@@ -60,6 +60,7 @@ Tạo môi trường ảo cho project:
 python3 -m venv venv
 ```
 Kết nối với môi trường ảo:
+
 Windows:
 ```
 venv\Scripts\activate
@@ -91,11 +92,13 @@ Download data ví dụ mẫu: `fern_2v`
 bash download_example_data.sh
 ```
 Nếu câu lệnh trên gặp lỗi, có thể thực hiện tải data trực tiếp tại [đây](http://cs.cmu.edu/~dsnerf/fern_2v.zip) sau đó giải nén file.
-Nếu muốn thử nghiệm với những data khác được nêu trong bài báo, có thể download tại [đây]((https://drive.google.com/drive/folders/14boI-o5hGO9srnWaaogTU5_ji7wkX2S7).
+
+Nếu muốn thử nghiệm với những data khác được nêu trong bài báo, có thể download tại [đây](https://drive.google.com/drive/folders/14boI-o5hGO9srnWaaogTU5_ji7wkX2S7).
 
 ### Pre-trained Models
 Bạn có thể download pre-trained model cho dữ liệu `fern_2v` tại [đây](https://drive.google.com/drive/folders/1lby-G4163NFi7Ue4rdB9D0cM67d7oskr?usp=sharing).
-Tạo một đường dẫn folder `./logs` cho pretrained-model như minh họa đưới đây để có thể thử nghiệm:
+
+Tạo một đường dẫn folder `./logs` cho pre-trained model như minh họa đưới đây để có thể thử nghiệm:
 ```
 ├── logs 
 │   ├── fern_2v    # downloaded logs
@@ -120,8 +123,9 @@ Bước này chỉ cần thực hiện nếu bạn muốn sử dụng data riên
 
 #### Testing
 
-Khi đã có folder của model (có thể là bạn tự train hoặc download ở trên) ở folder `.\logs`. 
-Kiểm tra lại đường dẫn đến data trong file `fern_dsnerf.txt` ở folder `config` tại mục `datadir` sao cho đúng tên folder chứa data
+Kiểm tra lại đường dẫn đến data trong file `fern_dsnerf.txt` ở folder `config` tại mục `datadir` sao cho đúng tên folder chứa data.
+
+Khi đã có folder của model (có thể là bạn tự train hoặc download ở trên) ở folder `.\logs`: 
 
 - Thực hiện câu lệnh sau để render video:
 ```
@@ -143,7 +147,7 @@ python run_nerf.py --config configs/fern_dsnerf.txt --eval
 python run_nerf.py --config configs/fern_dsnerf.txt
 ```
 
-Sau khi thực hiện, chương trình sẽ tạo ra folder thí nghiệm theo đường dẫn `./logs` và chứa các checkpoint và video được render
+Sau khi thực hiện, chương trình sẽ tạo ra folder thí nghiệm theo đường dẫn `./logs`, chứa các checkpoint và video được render.
 
 Bạn có thể tự tùy chỉnh config cho thí nghiệm của mình để thực hiện trên các datasets khác.
 
