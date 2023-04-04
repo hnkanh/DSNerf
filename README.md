@@ -81,7 +81,7 @@ Nếu trong quá trình chạy project gặp phải lỗi không nhận cuda. B�
 ```
 pip uninstall torch
 ```
-và thực hiện tải xuống phiên bản torch phù hợp trên website Pytorch [tại đây](ttps://pytorch.org/).
+và thực hiện tải xuống phiên bản torch phù hợp trên website Pytorch [tại đây](https://pytorch.org/).
 
 Nếu bạn muốn tính toán với data của riêng bạn thì cần tải [COLMAP](https://github.com/colmap/colmap)
 
@@ -107,7 +107,7 @@ Tạo một đường dẫn folder `./logs` cho pre-trained model như minh họ
 
 ### Chạy chương trình
 
-#### khởi tạo camera poses và sparse depth cho dữ liệu với COLMAP (có thể đọc kĩ hơn trong documentation của COLMAP) (tùy chọn)
+#### Khởi tạo camera poses và sparse depth cho dữ liệu với COLMAP (có thể đọc kĩ hơn trong documentation của COLMAP) (tùy chọn)
 
 Bước này chỉ cần thực hiện nếu bạn muốn sử dụng data riêng của mình.
 
@@ -123,7 +123,7 @@ Bước này chỉ cần thực hiện nếu bạn muốn sử dụng data riên
 
 #### Testing
 
-Kiểm tra lại đường dẫn đến data trong file `fern_dsnerf.txt` ở folder `config` tại mục `datadir` sao cho đúng tên folder chứa data.
+Kiểm tra lại đường dẫn đến data trong file config `fern_dsnerf.txt` ở folder `config` tại mục `datadir` sao cho đúng tên folder chứa data.
 
 Khi đã có folder của model (có thể là bạn tự train hoặc download ở trên) ở folder `.\logs`: 
 
