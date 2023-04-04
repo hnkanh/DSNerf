@@ -53,42 +53,62 @@ DS-NeRF trained with 5 views:
 ---
 
 
-## Quick Start
+## HƯỚNG DẪN CÀI ĐẶT
 
+Tạo môi trường ảo cho project:
+```
+python3 -m venv venv
+```
+Kết nối với môi trường ảo:
+Windows:
+```
+venv\Scripts\activate
+```
+
+Linux:
+```
+source venv/bin/activate
+
+```
 ### Dependencies
 
 Install requirements:
 ```
 pip install -r requirements.txt
 ```
+Nếu trong quá trình chạy project gặp phải lỗi không nhận cuda. Bạn có thể thực hiện uninstall phiên bản torch hiện tại với command:
+```
+pip uninstall torch
+```
+và thực hiện tải xuống phiên bản torch phù hợp trên website Pytorch [tại đây](ttps://pytorch.org/).
 
-You will also need [COLMAP](https://github.com/colmap/colmap) installed to compute poses if you want to run on your data.
+Nếu bạn muốn tính toán với data của riêng bạn thì cần tải [COLMAP](https://github.com/colmap/colmap)
 
 ### Data
 
-Download data for the example scene: `fern_2v`
+Download data ví dụ mẫu: `fern_2v`
 ```
 bash download_example_data.sh
 ```
-
-To play with other scenes presented in the paper, download the data [here](https://drive.google.com/drive/folders/14boI-o5hGO9srnWaaogTU5_ji7wkX2S7).
+Nếu câu lệnh trên gặp lỗi, có thể thực hiện tải data trực tiếp tại [đây](http://cs.cmu.edu/~dsnerf/fern_2v.zip) sau đó giải nén file.
+Nếu muốn thử nghiệm với những data khác được nêu trong bài báo, có thể download tại [đây]((https://drive.google.com/drive/folders/14boI-o5hGO9srnWaaogTU5_ji7wkX2S7).
 
 ### Pre-trained Models
-
-You can download the pre-trained models [here](https://drive.google.com/drive/folders/1lby-G4163NFi7Ue4rdB9D0cM67d7oskr?usp=sharing). Place the downloaded directory in `./logs` in order to test it later. See the following directory structure for an example:
+Bạn có thể download pre-trained model cho dữ liệu `fern_2v` tại [đây](https://drive.google.com/drive/folders/1lby-G4163NFi7Ue4rdB9D0cM67d7oskr?usp=sharing).
+Tạo một đường dẫn folder `./logs` cho pretrained-model như minh họa đưới đây để có thể thử nghiệm:
 ```
 ├── logs 
 │   ├── fern_2v    # downloaded logs
 │   ├── flower_2v  # downloaded logs
 ```
 
-### How to Run?
+### Chạy chương trình
 
-#### Generate camera poses and sparse depth information using COLMAP (optional)
+#### khởi tạo camera poses và sparse depth cho dữ liệu với COLMAP (có thể đọc kĩ hơn trong documentation của COLMAP) (tùy chọn)
 
-This step is necessary only when you want to run on your data.
+Bước này chỉ cần thực hiện nếu bạn muốn sử dụng data riêng của mình.
 
-First, place your scene directory somewhere. See the following directory structure for an example:
+Đối với data `fern_2v` đã được giải nén, bạn cần tạo đường dẫn folder cho data như minh họa dưới đây:
 ```
 ├── data
 │   ├── fern_2v
@@ -97,21 +117,18 @@ First, place your scene directory somewhere. See the following directory structu
 │   ├── ├── ├── image002.png
 ```
 
-To generate the poses and sparse point cloud:
-```
-python imgs2poses.py <your_scenedir>
-```
 
 #### Testing
 
-Once you have the experiment directory (downloaded or trained on your own) in `./logs`, 
+Khi đã có folder của model (có thể là bạn tự train hoặc download ở trên) ở folder `.\logs`. 
+Kiểm tra lại đường dẫn đến data trong file `fern_dsnerf.txt` ở folder `config` tại mục `datadir` sao cho đúng tên folder chứa data
 
-- to render a video:
+- Thực hiện câu lệnh sau để render video:
 ```
 python run_nerf.py --config configs/fern_dsnerf.txt --render_only
 ```
 
-The video would be stored in the experiment directory.
+Sau khi được render, video sẽ được lưu lại trong thư mục của thí nghiệm tại folder `logs`.
 
 <!-- - to only compute the evaluation metrics:
 ```
@@ -121,19 +138,14 @@ python run_nerf.py --config configs/fern_dsnerf.txt --eval
 
 #### Training
 
-To train a DS-NeRF on the example `fern` dataset:
+Để train DS-NeRF trên tập dữ liệu `fern` thực hiện câu lệnh sau (tùy chỉnh theo tên file config của bạn):
 ```
 python run_nerf.py --config configs/fern_dsnerf.txt
 ```
 
-It will create an experiment directory in `./logs`, and store the checkpoints and rendering examples there.
+Sau khi thực hiện, chương trình sẽ tạo ra folder thí nghiệm theo đường dẫn `./logs` và chứa các checkpoint và video được render
 
-You can create your own experiment configuration to try other datasets.
-
-
-### Use depth-supervised loss in your own project
-
-We provide a tutorial on how to use depth-supervised loss in your own project [here](resources/tutorial.md).
+Bạn có thể tự tùy chỉnh config cho thí nghiệm của mình để thực hiện trên các datasets khác.
 
 ---
 
